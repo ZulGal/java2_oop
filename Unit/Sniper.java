@@ -2,8 +2,20 @@ package java2.java2_oop.Unit;
 
 public class Sniper extends Archer{
 
-    public Sniper(float hp, int maxHp, int damage, int att, int def, int shots, int maxShots, float dist, String name) {
-        super(hp, maxHp, damage, att, def, shots, maxShots, dist, name);
+    public Sniper (String name){
+        super(100,100,18,6,2,22,22,3);  
+        super.name = name;
     }
 
+    @Override
+    public void step() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public String getInfo() {
+        // TODO Auto-generated method stub
+        return "Я снайпер "+ name;
+    }    
 }
