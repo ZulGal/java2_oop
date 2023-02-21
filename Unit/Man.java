@@ -2,32 +2,47 @@ package java2.java2_oop.Unit;
 
 public abstract class Man implements Gameinterface{
 
+    public String name;
     private float hp;
     public void setHp(float hp) {if (hp>=0) this.hp = hp;}
     public float getHp(){return hp;}
-    public int damage, att, def,maxHp;
-   
+    public int maxHp, minDamage, maxDamage, att, def, speed, x, y;
+    
 
-    public Man(float hp, int maxHp, int damage, int att, int def) {
+    public Man(String name, float hp, int maxHp, int minDamage, int maxDamage, int att, int def, int speed, int x,
+            int y) {
+        this.name = name;
         this.hp = hp;
         this.maxHp = maxHp;
-        this.damage = damage;
+        this.minDamage = minDamage;
+        this.maxDamage = maxDamage;
         this.att = att;
         this.def = def;
+        this.speed = speed;
+        this.x = x;
+        this.y = y;
     }
-    
-public Man(float hp, int damage, int maxHp) {
-        this.hp = hp;
-        this.damage = damage;
-        this.maxHp = maxHp;
-    }
-@Override
-public void step(){}
+    public int getSpeed(){return speed;} 
+    public float getX(){return x; }
+    public float getY(){return y;}
 
-@Override
-public String getInfo(){return "";}
+    
+   @Override
+   public void step() {
+       // TODO Auto-generated method stub
+       
+   }
+
+    @Override
+    public String getInfo(){return "";}
+
+    @Override
+    public String toString() {
+        return String.format("%s %d", this.name, this.speed);
+    }
     
 }
+    
     
     
 

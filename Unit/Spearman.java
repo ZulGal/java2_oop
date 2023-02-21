@@ -3,7 +3,7 @@ package java2.java2_oop.Unit;
 public class Spearman extends Soldier{
 
     public Spearman(String name){
-        super(100,100,18,6,2,22,22,3);  
+        super("",10,10,1,3,4,5,4,0,0,0,0,0);  
         super.name = name;
 }
 
@@ -14,7 +14,6 @@ public void step() {
 
 @Override
 public String getInfo() {
-    // TODO Auto-generated method stub
-    return "Я копейщик "+ name;
+    return String.format("Я копейщик %s Speed: %d", name, speed);
 }       
 }

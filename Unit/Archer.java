@@ -4,14 +4,20 @@ public abstract class Archer extends Man{
  
     int shots, maxShots;
     float dist;
-    String name;
 
-    public Archer(float hp, int maxHp, int damage, int att, int def, int shots, int maxShots, float dist) {
-        super(hp, maxHp, damage, att, def);
+    
+    public Archer(String name, float hp, int maxHp, int damageMin, int damageMax, int att, int def, int speed, int x, int y,
+            int shots, int maxShots, float dist) {
+        super(name, hp, maxHp, damageMin, damageMax, att, def, speed, x, y);
         this.shots = shots;
         this.maxShots = maxShots;
         this.dist = dist;
     }
+@Override
+public void step() {
+    if (this.shots>0) this.shots = this.shots -1;
+    }
     public float getDist(){return dist;}
+  
 }    
 

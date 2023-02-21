@@ -3,7 +3,7 @@ package java2.java2_oop.Unit;
 public class Bandit extends Soldier {
 
     public Bandit (String name){
-        super (70f,70,17,4,3,18,18,2);
+        super ("",10,10,2,4,8,3,6,0,0,0,0,0);
         super.name = name;
     }
 
@@ -15,8 +15,7 @@ public class Bandit extends Soldier {
 
     @Override
     public String getInfo() {
-        // TODO Auto-generated method stub
-        return "Я разбойник "+ name;
+        return String.format("Я разбойник %s Speed: %d", name, speed);
     }    
  
 
