@@ -1,45 +1,61 @@
 package java2.java2_oop.Unit;
 
-public abstract class Man implements Gameinterface{
+import java.util.ArrayList;
+
+public abstract class Man  implements Gameinterface{
 
     public String name;
-    private float hp;
-    public void setHp(float hp) {if (hp>=0) this.hp = hp;}
-    public float getHp(){return hp;}
-    public int maxHp, minDamage, maxDamage, att, def, speed, x, y;
+    public Coords coords;
+    public float hp;
+    protected void setHp(float  hp) {if (hp>=0) this.hp = hp;}
+    protected float getHp(){return hp;}
+    protected int maxHp, minDamage, maxDamage, att, def, speed;
     
-
-    public Man(String name, float hp, int maxHp, int minDamage, int maxDamage, int att, int def, int speed, int x,
-            int y) {
-        this.name = name;
-        this.hp = hp;
-        this.maxHp = maxHp;
-        this.minDamage = minDamage;
-        this.maxDamage = maxDamage;
-        this.att = att;
-        this.def = def;
-        this.speed = speed;
-        this.x = x;
-        this.y = y;
-    }
-    public int getSpeed(){return speed;} 
-    public float getX(){return x; }
-    public float getY(){return y;}
-
+    // public ArrayList team1;
     
-   @Override
-   public void step() {
-       // TODO Auto-generated method stub
-       
-   }
+    
+        public int getSpeed(){return speed;} 
 
-    @Override
-    public String getInfo(){return "";}
+        public Man(String name, int x,int y, float hp, int maxHp, int minDamage, int maxDamage, int att, int def,
+                int speed) {
+            this.name = name;
+            this.coords = new Coords(x,y);
+            this.hp = hp;
+            this.maxHp = maxHp;
+            this.minDamage = minDamage;
+            this.maxDamage = maxDamage;
+            this.att = att;
+            this.def = def;
+            this.speed = speed;
+        }
+        public int findNearest(ArrayList<Man> team) {
+            Double min = (double) 100; 
+            int index = 0;
+            for (int i = 0; i < team.size(); i++) {
+                if (min>coords.getDist(team.get(i).coords)){
+                    index = i;
+                    min = coords.getDist(team.get(i).coords);
+                } 
+            System.out.println(index);    
+            }
+            return index;   
+        } 
 
-    @Override
-    public String toString() {
-        return String.format("%s %d", this.name, this.speed);
-    }
+        
+
+        @Override
+        public void step(ArrayList<Man> team1, ArrayList<Man> team2) {
+            // TODO Auto-generated method stub
+            
+        }
+
+
+
+        @Override
+        public String getInfo() {
+            // TODO Auto-generated method stub
+            return null;
+        }
     
 }
     
