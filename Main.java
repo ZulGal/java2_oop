@@ -1,7 +1,7 @@
 package java2.java2_oop;
 
 import java.util.*;
-
+import java.util.Scanner;
 import java2.java2_oop.Unit.Bandit;
 import java2.java2_oop.Unit.Crossbowman;
 import java2.java2_oop.Unit.Farmer;
@@ -12,14 +12,18 @@ import java2.java2_oop.Unit.Names;
 import java2.java2_oop.Unit.Sniper;
 import java2.java2_oop.Unit.Spearman;
 
+
 public class Main {
+    static final int UNITS = 10;
+    
     
     public static void main(String[] args) {
-
+        Scanner sc = new Scanner(System.in);
         ArrayList <Man> team1 = new ArrayList <> ();
         ArrayList <Man> team2 = new ArrayList <> ();
-        for (int i = 0; i < 10; i++) {
-           
+        ArrayList <Man> teams = new ArrayList <> ();
+
+        for (int i = 0; i < UNITS; i++) {
             int k = new Random().nextInt(4);
             switch (k){
                 case 0: team1.add (new Bandit(getName(),1, (i+1)));
@@ -31,84 +35,60 @@ public class Main {
                 case 3: team1.add (new Sniper(getName(),1,i+1));
                 break;
             }
-        // System.out.printf("i: ",i);  
-        // System.out.println(team1.get(i).getInfo());  
         }
-     
-        for (int i = 0; i < 10; i++) {
+        
+        for (int i = 0; i < UNITS; i++) {
             int k = new Random().nextInt(4);
             switch (k){
                 case 0: team2.add (new Crossbowman(getName(),10,i+1));
                 break;
-                case 1:
-                team2.add (new Farmer(getName(),10,i+1));
+                case 1: team2.add (new Farmer(getName(),10,i+1));
                 break;
                 case 2: team2.add (new Spearman(getName(),10,i+1));
                 break;
-                case 3: 
-                team2.add (new Monk(getName(),10,i+1));
+                case 3: team2.add (new Monk(getName(),10,i+1));
                 break;
             }
-            // System.out.printf("i: ",i);  
-            // System.out.println(team1.get(i).getInfo()); 
         } 
+
         teamSort(team1);
         teamSort(team2);
-        System.out.println();
-        System.out.println("1 список");
-        System.out.println("Class   minDamage    maxDamage    Attack    Defence    Speed      Hp          Shoots    x      y");
-        teamPrint(team1);
-        System.out.println();
-        System.out.println("2 список");
-        System.out.println("Class   minDamage    maxDamage    Attack    Defence    Speed      Hp          Shoots    x      y");
-        teamPrint(team2);
-        // crossman.step();
-        // sniper.step();
 
-        ArrayList <Man> teams = new ArrayList <> ();
-        int k =10;
-        for (int i = 0; i < k; i++) {
+        for (int i = 0; i < UNITS; i++) {
             teams.add(team1.get(i));
             teams.add(team2.get(i));
-         }
-        
-         System.out.println("Сортированный общий список");
-        teamSort(teams);
-        teamPrint(teams);
-        // for (int i = 0; i < teamAll.size(); i++) {
-        //     System.out.println(teamAll.get(i).getInfo());
-        // }
-        while(true){
-
-            for (int i = 0; i < teams.size(); i++) {
-                if(teams.get(i).coords.x == 1) {
-                    step(team1,team2);
-                }else{
-                    step(team2,team1);
-                }
+        }
+        teamPrint(teams,"All");
             
-            System.out.println();
-            System.out.println(i);
-            System.out.println("1 список");
-            System.out.println("Class   minDamage    maxDamage    Attack    Defence    Speed      Hp          Shoots    x      y");
-            teamPrint(team1);
-            System.out.println();
-            System.out.println("2 список");
-            System.out.println("Class   minDamage    maxDamage    Attack    Defence    Speed      Hp          Shoots    x      y");
-            teamPrint(team2);
+        // while(true){
+            int l = 0;
+            for (Man man: teams) {
 
-            try (Scanner sc = new Scanner(System.in)) {
-                System.out.print("Нажмите Enter");
-                sc.nextLine();
+                System.out.printf("step: %s  ",l);
+                System.out.println(man.getClass());
+
+                if (team1.contains(man)){
+                    man.step(team1, team2);
+                    teamPrint(team1,"1");
+                   
+                }    
+                else{
+                    man.step(team2, team1);
+                    teamPrint(team2,"2");
+                 
+                }
+                l++;
+                
+                // System.out.print("Нажмите Enter");
+                // sc.nextLine();
+            
             }
+            System.out.print("Нажмите Enter");
+            sc.nextLine();     
+        // }              
+     }          
+           
         
-        }        
-
-        }    
-
-    }
-        private static void step(ArrayList<Man> team1, ArrayList<Man> team2) {
-    }
         private static void teamSort(ArrayList <Man> team){
             team.sort(new Comparator<Man>() {
                 @Override
@@ -118,21 +98,23 @@ public class Main {
             }   
             );
         } 
-        private static void teamPrint(ArrayList <Man> team){
+        private static void teamPrint(ArrayList <Man> team,String n){
+            System.out.printf("team %s",n);
+            System.out.println();
+            System.out.println("step Class         name    minDam  maxDam   Att     Def    Speed   Hp   maxHP   x    y   State   Shoots");
             for (int i = 0; i < team.size(); i++) {
-                System.out.println(team.get(i).getInfo());
+                if (n=="1"){
+                    String s =String.format("%3d %s",2*i,team.get(i).getInfo());
+                    System.out.println(s);
+                }else if (n =="2") {
+                    String s =String.format("%3d %s",2*i+1,team.get(i).getInfo());
+                    System.out.println(s);
+                }else {
+                    String s =String.format("%3d %s",i,team.get(i).getInfo());
+                    System.out.println(s);
+                } 
             }    
         } 
-        // private ArrayList<Man> teamMerge(ArrayList<Man> team1, ArrayList<Man> team2){
-        //     ArrayList <Man> team = new ArrayList <> ();
-        //     int k =0;
-        //     for (int i = 0; i < k; i++) {
-        //         team.add(team1.get(i));
-        //         team.add(team2.get(i));
-        //      }
-        //     return team;    
-
-        // }
             
         private static String getName(){
             String name = String.valueOf(Names.values()[new Random().nextInt(Names.values().length-1)]);

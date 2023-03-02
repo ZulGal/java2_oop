@@ -6,7 +6,7 @@ public class Monk extends Mag {
 
     
     public Monk (String name, int x, int y){
-        super(name,x,y,30,30,-4,-4,12,7,9,1,0);
+        super(name,x,y,30,30,-4,-4,12,7,9,1,0,"Stand");
         super.name = name;
     }  
     @Override
@@ -16,7 +16,8 @@ public class Monk extends Mag {
 
     @Override
     public String getInfo(){
-        return String.format("Монах     %d           %d          %d          %d          %d      %1f      %d      %d      %d",minDamage,maxDamage, att,def, speed,hp, mana,coords.x,coords.y);
+        return String.format("Монах2      %s",super.getInfo());
     }
+
     
 }

@@ -6,7 +6,7 @@ public class Spearman extends Soldier{
 
     
     public Spearman(String name, int x,int y){
-        super(name,x,y,10,10,1,3,4,5,4,0,0,0); 
+        super(name,x,y,10,10,1,3,4,5,4,0,0,0,"Stand"); 
         super.name = name;
     }
 
@@ -18,6 +18,6 @@ public class Spearman extends Soldier{
 
     @Override
     public String getInfo() {
-        return String.format("Копейщик   %d            %d           %d          %d          %d      %1f      %d      %d      %d",minDamage,maxDamage, att,def, speed,hp, 0,coords.x,coords.y);
-    }       
+        return String.format("Копейщик2   %s",super.getInfo());
+    }  
 }

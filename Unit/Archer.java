@@ -8,52 +8,55 @@ public abstract class Archer extends Man{
     float dist;
 
     public Archer(String name, int x, int y, float hp, int maxHp, int minDamage, int maxDamage, int att, int def,
-            int speed, int shoots, int maxShoots, float dist) {
-        super(name, x, y, hp, maxHp, minDamage, maxDamage, att, def, speed);
+            int speed, int shoots, int maxShoots, float dist,String state) {
+        super(name, x, y, hp, maxHp, minDamage, maxDamage, att, def, speed,state);
         this.shoots = shoots;
         this.maxShoots = maxShoots;
         this.dist = dist;
     }
 
+    // @Override
+    // public void step(ArrayList<Human> team1, ArrayList<Human> team2) {
+    //     if (state.equals("Die") || cartridges == 0) return;
+    //     int target = findNearest(team2);
+    //     float damage = (team2.get(target).defense - attack > 0) ? damageMin : (team2.get(target).defense - attack < 0) ? damageMax : (damageMax+damageMin)/2;
+    //     team2.get(target).getDamage(damage);
 
+    //     for (int i = 0; i < team1.size(); i++) {
+    //         if (team1.get(i).getInfo().toString().split(":")[0].equals("Фермер") && team1.get(i).state.equals("Stand")) {
+    //             team1.get(i).state = "Busy";
+    //             return;
+    //         }
+    //     }
+    //     cartridges--;
+    // }
     @Override
     public void step(ArrayList<Man> team1, ArrayList<Man> team2) {
-        if (this.shoots>=1){
-            int index = super.findNearest(team2);
-            if (team2.get(index).def - this.att >0){
-                team2.get(index).hp = team2.get(index).hp - this.maxDamage;
+        if (state.equals("Die") || shoots == 0) return;
+        int target = findNearest(team2);
+        float damage = (team2.get(target).def - att > 0) ? minDamage : (team2.get(target).def - att < 0) ? maxDamage : (maxDamage+minDamage)/2;
+        team2.get(target).getDamage(damage);
+
+        for (int i = 0; i < team1.size(); i++) {
+            if (team1.get(i).getInfo().split(" ")[0].equals("Фермер") && team1.get(i).state.equals("Stand")) {
+                team1.get(i).state = "Busy";
+                return;
             }
-
-        }else { if (shoots ==1){}}
-            
-        
-
-        
-
-        // super.step(team1, team2);
+        }
+        shoots--;
     }
 
+  
+
+       
+    @Override
+    public String getInfo() {
+        return String.format("%s  %6d",super.getInfo(),this.shoots);
+    }
 
     public void setShoots(int shoots) {
         this.shoots = shoots;
     }
-
-    
-
-
-
-
-    // @Override
-    // public void step(ArrayList<Man> team1, ArrayList<Man> team2) {
-    //     // team2.get(0).coords.x= 3; 
-    // }
-
-
-
-    // @Override
-    // public String getInfo() {
-    //     return String.format("Я %s Att: %d Def: %d Speed: %d Hp: %f  Shoots:  %d x: %d y: %d", name, att,def,speed,hp, shoots,coords.x,coords.y);
-    // }    
   
 }    
 

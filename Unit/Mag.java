@@ -1,5 +1,7 @@
 package java2.java2_oop.Unit;
 
+import java.util.ArrayList;
+
 public abstract class Mag extends Man {
 
     int mana;
@@ -7,14 +9,31 @@ public abstract class Mag extends Man {
     
     
     public Mag(String name, int x, int y, int hp, int maxHp, int minDamage, int maxDamage, int att, int def,
-            int speed, int mana, float dist) {
-        super(name, x, y, hp, maxHp, minDamage, maxDamage, att, def, speed);
+            int speed, int mana, float dist,String state) {
+        super(name, x, y, hp, maxHp, minDamage, maxDamage, att, def, speed,state);
         this.mana = mana;
         this.dist = dist;
     }
 
+    @Override
+    public String getInfo() {
+        return String.format("%s  %6d",super.getInfo(),this.mana);
+    }
 
+    @Override
+    public void step(ArrayList<Man> team1, ArrayList<Man> team2) {
+        for (Man man: team1){
+            if (man.hp < man.maxHp) {
+            man.getDamage(maxDamage);
+            break;
+            }
+        }
+        // for (int i = 0; i < team1.size(); i++) {
+        //     if (team1.get(i).hp<team1.get(i).maxHp)team1.get(i).hp= team1.get(i).maxHp;
+        // }
 
+        }
+    
 
     public float getDist(){return dist;}
     
