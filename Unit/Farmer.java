@@ -6,13 +6,6 @@ public class Farmer extends Man{
     int delivery;
     float dist;
     
-    
-    // public Farmer(String name, int x, int y, float hp, int maxHp, int minDamage, int maxDamage, int att, int def,
-    //         int speed, int delivery, float dist) {
-    //     super(name, x, y, hp, maxHp, minDamage, maxDamage, att, def, speed);
-    //     this.delivery = delivery;
-    //     this.dist = dist;
-    // }
 
     public Farmer(String name, int x, int y, float hp, int maxHp, int minDamage, int maxDamage, int att, int def,
             int speed, int delivery, float dist,String state) {

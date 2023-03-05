@@ -9,10 +9,6 @@ public class Monk extends Mag {
         super(name,x,y,30,30,-4,-4,12,7,9,1,0,"Stand");
         super.name = name;
     }  
-    @Override
-    public void step(ArrayList<Man> team1, ArrayList<Man> team2) {
-        // TODO Auto-generated method stub
-    }
 
     @Override
     public String getInfo(){

@@ -15,21 +15,6 @@ public abstract class Archer extends Man{
         this.dist = dist;
     }
 
-    // @Override
-    // public void step(ArrayList<Human> team1, ArrayList<Human> team2) {
-    //     if (state.equals("Die") || cartridges == 0) return;
-    //     int target = findNearest(team2);
-    //     float damage = (team2.get(target).defense - attack > 0) ? damageMin : (team2.get(target).defense - attack < 0) ? damageMax : (damageMax+damageMin)/2;
-    //     team2.get(target).getDamage(damage);
-
-    //     for (int i = 0; i < team1.size(); i++) {
-    //         if (team1.get(i).getInfo().toString().split(":")[0].equals("Фермер") && team1.get(i).state.equals("Stand")) {
-    //             team1.get(i).state = "Busy";
-    //             return;
-    //         }
-    //     }
-    //     cartridges--;
-    // }
     @Override
     public void step(ArrayList<Man> team1, ArrayList<Man> team2) {
         if (state.equals("Die") || shoots == 0) return;
@@ -45,9 +30,6 @@ public abstract class Archer extends Man{
         }
         shoots--;
     }
-
-  
-
        
     @Override
     public String getInfo() {

@@ -23,14 +23,11 @@ public abstract class Mag extends Man {
     @Override
     public void step(ArrayList<Man> team1, ArrayList<Man> team2) {
         for (Man man: team1){
-            if (man.hp < man.maxHp) {
+            if ((man.hp < man.maxHp)&&(man.state != "Die")) {
             man.getDamage(maxDamage);
             break;
             }
         }
-        // for (int i = 0; i < team1.size(); i++) {
-        //     if (team1.get(i).hp<team1.get(i).maxHp)team1.get(i).hp= team1.get(i).maxHp;
-        // }
 
         }
     

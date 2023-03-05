@@ -1,5 +1,7 @@
 package java2.java2_oop.Unit;
 
+import java.util.ArrayList;
+
 public abstract class Soldier extends Man {
 
     int spear, maxSpear;
@@ -12,6 +14,17 @@ public abstract class Soldier extends Man {
         this.maxSpear = maxSpear;
         this.dist = dist;
     }
+    @Override
+    public void step(ArrayList<Man> team1, ArrayList<Man> team2) {
+        if (state.equals("Die")) return; 
+        int target = findNearest(team2);
+
+
+        if (coords.isLeft(team2.get(target).coords)) coords.x-- ;
+        if (coords.isUp(team2.get(target).coords)) coords.y++; 
+        
+        }
+        
     @Override
     public String getInfo() {
         return String.format("%s  %6d",super.getInfo(),this.spear);

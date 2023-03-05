@@ -13,7 +13,6 @@ public class Spearman extends Soldier{
 
     @Override
     public void step(ArrayList<Man> team1, ArrayList<Man> team2) {
-        // TODO Auto-generated method stub
     }
 
     @Override

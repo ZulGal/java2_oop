@@ -2,6 +2,8 @@ package java2.java2_oop;
 
 import java.util.*;
 import java.util.Scanner;
+import java.util.Comparator;
+import java.util.Random;
 import java2.java2_oop.Unit.Bandit;
 import java2.java2_oop.Unit.Crossbowman;
 import java2.java2_oop.Unit.Farmer;
@@ -14,14 +16,15 @@ import java2.java2_oop.Unit.Spearman;
 
 
 public class Main {
+
     static final int UNITS = 10;
+    public static ArrayList <Man> team1 = new ArrayList <> ();
+    public static ArrayList <Man> team2 = new ArrayList <> ();
+    public static ArrayList <Man> teams = new ArrayList <> ();
     
     
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        ArrayList <Man> team1 = new ArrayList <> ();
-        ArrayList <Man> team2 = new ArrayList <> ();
-        ArrayList <Man> teams = new ArrayList <> ();
 
         for (int i = 0; i < UNITS; i++) {
             int k = new Random().nextInt(4);
@@ -61,9 +64,9 @@ public class Main {
         teamPrint(teams,"All");
             
         // while(true){
-            int l = 0;
+            int l = 1;
             for (Man man: teams) {
-
+                View.view();
                 System.out.printf("step: %s  ",l);
                 System.out.println(man.getClass());
 
@@ -104,13 +107,13 @@ public class Main {
             System.out.println("step Class         name    minDam  maxDam   Att     Def    Speed   Hp   maxHP   x    y   State   Shoots");
             for (int i = 0; i < team.size(); i++) {
                 if (n=="1"){
-                    String s =String.format("%3d %s",2*i,team.get(i).getInfo());
-                    System.out.println(s);
-                }else if (n =="2") {
                     String s =String.format("%3d %s",2*i+1,team.get(i).getInfo());
                     System.out.println(s);
+                }else if (n =="2") {
+                    String s =String.format("%3d %s",2*i+2,team.get(i).getInfo());
+                    System.out.println(s);
                 }else {
-                    String s =String.format("%3d %s",i,team.get(i).getInfo());
+                    String s =String.format("%3d %s",i+1,team.get(i).getInfo());
                     System.out.println(s);
                 } 
             }    
@@ -122,5 +125,6 @@ public class Main {
         }
         
 
-}     
+}  
+
 
