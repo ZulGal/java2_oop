@@ -1,7 +1,5 @@
 package java2.java2_oop.Unit;
 
-import java.util.ArrayList;
-
 public class Monk extends Mag {
 
     

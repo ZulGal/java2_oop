@@ -2,8 +2,6 @@ package java2.java2_oop.Unit;
 
 import java.util.ArrayList;
 
-import javax.swing.text.html.FormView;
-
 public abstract class Man  implements Gameinterface{
 
     public String name;
@@ -52,15 +50,15 @@ public abstract class Man  implements Gameinterface{
         public int[] getCoords() {return new int[]{coords.x, coords.y};}
 
         public int findNearest(ArrayList<Man> team) {
-            Double min = (double) 100; 
-            int index = 0;
+            double min = Double.MAX_VALUE; 
+            int index = -1;
             for (int i = 0; i < team.size(); i++) {
-                if (min>coords.getDist(team.get(i).coords)){
+                double r = coords.getDist(team.get(i).coords);
+                if (min>r && r>0){    
                     index = i;
-                    min = coords.getDist(team.get(i).coords);
+                    min = r;
                 }
             }
-            System.out.println(String.format("indexNearest: %d",index)); 
             return index;   
         } 
         
@@ -73,8 +71,6 @@ public abstract class Man  implements Gameinterface{
             }
             if (hp > maxHp) hp = maxHp;
         } 
-  
-
         @Override
         public void step(ArrayList<Man> team1, ArrayList<Man> team2){} 
 
@@ -83,7 +79,6 @@ public abstract class Man  implements Gameinterface{
             return String.format("%6s %7d %7d %7d %7d %7d %7.2f %3d %7d %3d %7s",name,minDamage,maxDamage, att,def, speed,hp,maxHp,coords.x,coords.y,state);
         }
 
-    
 }
     
     

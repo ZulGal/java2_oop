@@ -1,9 +1,7 @@
 package java2.java2_oop;
 
 import java.util.*;
-import java.util.Scanner;
-import java.util.Comparator;
-import java.util.Random;
+
 import java2.java2_oop.Unit.Bandit;
 import java2.java2_oop.Unit.Crossbowman;
 import java2.java2_oop.Unit.Farmer;
@@ -23,19 +21,20 @@ public class Main {
     public static ArrayList <Man> teams = new ArrayList <> ();
     
     
+    
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         for (int i = 0; i < UNITS; i++) {
             int k = new Random().nextInt(4);
             switch (k){
-                case 0: team1.add (new Bandit(getName(),1, (i+1)));
+                case 0: team1.add (new Bandit(getName(),i+1,1));
                 break;
-                case 1: team1.add (new Farmer(getName(),1,i+1));
+                case 1: team1.add (new Farmer(getName(),i+1,1));
                 break;
-                case 2: team1.add (new Magician(getName(),1,i+1));
+                case 2: team1.add (new Magician(getName(),i+1,1));
                 break;
-                case 3: team1.add (new Sniper(getName(),1,i+1));
+                case 3: team1.add (new Sniper(getName(),i+1,1));
                 break;
             }
         }
@@ -43,13 +42,13 @@ public class Main {
         for (int i = 0; i < UNITS; i++) {
             int k = new Random().nextInt(4);
             switch (k){
-                case 0: team2.add (new Crossbowman(getName(),10,i+1));
+                case 0: team2.add (new Crossbowman(getName(),i+1,10));
                 break;
-                case 1: team2.add (new Farmer(getName(),10,i+1));
+                case 1: team2.add (new Farmer(getName(),i+1,10));
                 break;
-                case 2: team2.add (new Spearman(getName(),10,i+1));
+                case 2: team2.add (new Spearman(getName(),i+1,10));
                 break;
-                case 3: team2.add (new Monk(getName(),10,i+1));
+                case 3: team2.add (new Monk(getName(),i+1,10));
                 break;
             }
         } 
@@ -63,7 +62,7 @@ public class Main {
         }
         teamPrint(teams,"All");
             
-        // while(true){
+        while(true){
             int l = 1;
             for (Man man: teams) {
                 View.view();
@@ -73,22 +72,17 @@ public class Main {
                 if (team1.contains(man)){
                     man.step(team1, team2);
                     teamPrint(team1,"1");
-                   
                 }    
                 else{
                     man.step(team2, team1);
                     teamPrint(team2,"2");
-                 
                 }
                 l++;
                 
-                // System.out.print("Нажмите Enter");
-                // sc.nextLine();
-            
             }
             System.out.print("Нажмите Enter");
             sc.nextLine();     
-        // }              
+        }              
      }          
            
         

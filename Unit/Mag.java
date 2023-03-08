@@ -28,10 +28,6 @@ public abstract class Mag extends Man {
             break;
             }
         }
-
         }
-    
-
-    public float getDist(){return dist;}
     
 }

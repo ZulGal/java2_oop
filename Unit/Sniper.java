@@ -12,8 +12,4 @@ public class Sniper extends Archer{
     public String getInfo() {
         return String.format("Снайпер1    %s",super.getInfo());
     }
-    // @Override
-    // public String getInfo() {
-    //     return String.format("Снайпер    %d           %d          %d          %d         %d      %1f     %d      %d      %d",minDamage,maxDamage, att,def, speed,hp, shoots,coords.x,coords.y);
-    // }    
 }
